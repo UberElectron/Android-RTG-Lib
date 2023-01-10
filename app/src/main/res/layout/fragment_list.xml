@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20sp"
+    android:orientation="vertical"
+    tools:context=".FragmentList">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50sp"
+        android:text="@string/exFragListTitle"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btFragList_Ex1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btExFragList1" />
+
+    <Button
+        android:id="@+id/btFragList_Ex2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btExFragList2" />
+
+    <Button
+        android:id="@+id/btFragList_Back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btBack" />
+</LinearLayout>

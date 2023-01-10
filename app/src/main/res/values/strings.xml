@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AndroidRTG-Sample</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="mainTitle">Android_RTG Lib Sample App.</string>
+    <string name="exActTitle">Activity with a RTG_Surface and a custom handler.</string>
+    <string name="exFragListTitle">Example on Fragments</string>
+    <string name="exFragExDefaultHandlerTitle">RTG_Surface on a fragment without handler</string>
+    <string name="exFragExCustomHandlerTitle">RTG_Surface on a fragment with custom handler</string>
+
+    <string name="btExAct">Activity Example</string>
+    <string name="btExFrag">Fragments Example</string>
+
+    <string name="btExFragList1">Default Handler</string>
+    <string name="btExFragList2">Custom Handler</string>
+
+    <string name="btBack">Go Back!</string>
+</resources>
