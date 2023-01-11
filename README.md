@@ -10,8 +10,33 @@ I will create a Wiki or some docs sometime.
 
 
 ## How to use!
-I'm trying Jitpack for releases...
+I'm trying Jitpack for releases so it's easy to add this library as a dependency.
 
-Follow this guide to add AndroidRTG Lib to your projects: https://docs.jitpack.io/
+If you want to know how to use it... Sory! I have not written the docs yet, so try to figure it out for now.
 
-Soryy! I have not written the docs yet, so try to figure it out for now.
+### How to add this library as a dependency in Android Studio:
+
+1. Open your settings.gradle file and add this line to your repositories:
+```
+maven { url 'https://jitpack.io' }
+```
+It should look something like this:
+```
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+2. Open build.gradle of your app and add the implementation (You should set the last version release):
+```
+implementation 'com.github.UberElectron:Android-RTG-Lib:1.0.0'
+```
+
+
+You can follow this guide from Jitpack, but it's not Android related (se follow this if you are not using Android Studio): https://docs.jitpack.io/
+
