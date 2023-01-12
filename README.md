@@ -12,7 +12,10 @@ I will create a Wiki or some docs sometime.
 ## How to use!
 I'm trying Jitpack for releases so it's easy to add this library as a dependency.
 
-If you want to know how to use it... Sory! I have not written the docs yet, so try to figure it out for now.
+If you want to know how to use it... Sorry! I have not written the docs yet, so try to figure it out for now.
+
+### Sample App.
+This repository contains a sample app, so you can clone the repo and open it with Android Studio (2021.3). This way, you can get an idea of how to use it.
 
 ### How to add this library as a dependency in Android Studio:
 

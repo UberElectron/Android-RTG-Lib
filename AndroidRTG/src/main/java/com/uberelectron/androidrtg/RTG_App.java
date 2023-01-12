@@ -26,6 +26,7 @@ public interface RTG_App
 
     /**
      * Called when RTG_Surface changed (screen rotated, resolution changed, ...)
+     * Called on surface creation (can be considered a "change").
      * Used for adjusting rendering to new resolution.
      * @param width new surface width.
      * @param height new surface height.

@@ -3,10 +3,10 @@
     <!-- TODO: Remove or change this placeholder text -->
 
     <string name="mainTitle">Android_RTG Lib Sample App.</string>
-    <string name="exActTitle">Activity with a RTG_Surface and a custom handler.</string>
+    <string name="exActTitle">Activity with a RTG_Surface and a custom handler (Click surface).</string>
     <string name="exFragListTitle">Example on Fragments</string>
     <string name="exFragExDefaultHandlerTitle">RTG_Surface on a fragment without handler</string>
-    <string name="exFragExCustomHandlerTitle">RTG_Surface on a fragment with custom handler</string>
+    <string name="exFragExCustomHandlerTitle">RTG_Surface on a fragment with custom handler (Click surface).</string>
 
     <string name="btExAct">Activity Example</string>
     <string name="btExFrag">Fragments Example</string>

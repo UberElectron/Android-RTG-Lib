@@ -1,5 +1,7 @@
 package com.uberelectron.androidrtg_sample.RTG;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class MyData
@@ -26,8 +28,12 @@ public class MyData
 
     // END SINGLETON.
 
+    //Constructor should be private for singleton.
+    private MyData() {}
+
 
     public Rect rect1;
+    public Paint mainPaint;
 
     /**
      * Create all starting data.
@@ -36,6 +42,8 @@ public class MyData
     {
         rect1 = new Rect(50, 50, 150, 200);
 
+        mainPaint = new Paint();
+        mainPaint.setColor(Color.CYAN);
     }
 
 }

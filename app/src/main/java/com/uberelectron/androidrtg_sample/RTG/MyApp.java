@@ -18,11 +18,9 @@ public class MyApp implements RTG_App
     @Override
     public void Render(Canvas c)
     {
-        //NOT RECOMMENDED, Save Paint somewhere else!
-        Paint p = new Paint();
-        p.setColor(Color.CYAN);
+        MyData data = MyData.getInstance();
 
-        c.drawRect(MyData.getInstance().rect1, p);
+        c.drawRect(data.rect1, data.mainPaint);
     }
 
     @Override

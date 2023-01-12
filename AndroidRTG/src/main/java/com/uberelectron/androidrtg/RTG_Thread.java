@@ -1,6 +1,7 @@
 package com.uberelectron.androidrtg;
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Looper;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -26,6 +27,10 @@ public class RTG_Thread extends Thread
         try
         {
             app = rtgApp.newInstance();
+
+            //Update Surface Size.
+            Rect surfaceRect = rtgSurfaceHolder.getSurfaceFrame();
+            app.onSurfaceChanged(surfaceRect.width(), surfaceRect.height());
         }
         catch (Exception e)
         {

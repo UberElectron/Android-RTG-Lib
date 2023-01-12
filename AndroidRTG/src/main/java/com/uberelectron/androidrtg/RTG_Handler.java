@@ -1,5 +1,6 @@
 package com.uberelectron.androidrtg;
 
+import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -87,7 +88,7 @@ public class RTG_Handler extends Handler
         switch (msg.what)
         {
             case MSG_SURFACE_CREATED:
-                //TODO: ¿Algo cuando se crea la surface?
+                //TODO: Do I need to do something here?
                 break;
             case MSG_SURFACE_CHANGED:
                 thread.onSurfaceChange(msg.arg1, msg.arg2);
@@ -102,7 +103,7 @@ public class RTG_Handler extends Handler
                 break;
         }
 
-        //FIXME: Esto considera que estamos gestionando, pero no estoy tan seguro de ello...
+        //FIXME: I'm not sure it should return true...
         return true;
         //return super.sendMessageAtTime(msg, uptimeMillis);
     }
