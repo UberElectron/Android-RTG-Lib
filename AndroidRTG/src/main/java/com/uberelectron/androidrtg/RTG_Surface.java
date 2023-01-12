@@ -53,7 +53,9 @@ public class RTG_Surface extends SurfaceView implements SurfaceHolder.Callback, 
         try
         {
             thread = new RTG_Thread(rtgAppClass, rtgHandlerClass, holder);
+            thread.setName("RTG_Thread");
             thread.start();
+            thread.waitUntilReady();
 
             //Send SurfaceCreated event to thread.
             RTG_Handler handler = thread.getHandler();
@@ -68,6 +70,7 @@ public class RTG_Surface extends SurfaceView implements SurfaceHolder.Callback, 
             return;
         }
 
+        //Start draw events.
         Choreographer.getInstance().postFrameCallback(this);
     }
 

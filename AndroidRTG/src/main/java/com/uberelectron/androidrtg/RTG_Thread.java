@@ -10,12 +10,17 @@ public class RTG_Thread extends Thread
 {
     public static final String TAG = "RTG_Thread";
 
+    // Used to wait for the thread to start.
+    private Object mStartLock = new Object();
+    private boolean mReady = false;
+
+
     private volatile RTG_App app;
     private volatile RTG_Handler handler;
 
-    private volatile SurfaceHolder holder;
+    private final SurfaceHolder holder;
 
-    private volatile Class<? extends RTG_Handler> customHandlerClass;
+    private final Class<? extends RTG_Handler> customHandlerClass;
 
     private Looper loop;
 
@@ -23,25 +28,20 @@ public class RTG_Thread extends Thread
     public RTG_Thread(Class<? extends RTG_App> rtgApp, Class<? extends RTG_Handler> handler,
                       SurfaceHolder rtgSurfaceHolder)
     {
+        holder = rtgSurfaceHolder;
+        customHandlerClass = handler;
+
         //Instantiate the rtgApp.
         try
         {
             app = rtgApp.newInstance();
-
-            //Update Surface Size.
-            Rect surfaceRect = rtgSurfaceHolder.getSurfaceFrame();
-            app.onSurfaceChanged(surfaceRect.width(), surfaceRect.height());
         }
         catch (Exception e)
         {
             Log.e(TAG, "Error instantiating rtgApp");
-            return;
         }
 
-        customHandlerClass = handler;
-
-        holder = rtgSurfaceHolder;
-
+        //TODO: Wait until it's ready.
     }
 
 
@@ -69,14 +69,39 @@ public class RTG_Thread extends Thread
             }
         }
 
+        synchronized (mStartLock) {
+            mReady = true;
+            mStartLock.notify();    // signal waitUntilReady()
+        }
+
         //Start App.
         app.Start();
+
+        //Update Surface Size so initial size can be got.
+        Rect surfaceRect = holder.getSurfaceFrame();
+        app.onSurfaceChanged(surfaceRect.width(), surfaceRect.height());
 
         //Loop!!!
         Looper.loop();
 
-
+        synchronized (mStartLock) {
+            mReady = false;
+        }
         Log.i(TAG, "RTG_Thread Ended");
+    }
+
+    /**
+     * Waits until the render thread is ready to receive messages.
+     * Call from the RTG_Surface (UI thread).
+     */
+    public void waitUntilReady() {
+        synchronized (mStartLock) {
+            while (!mReady) {
+                try {
+                    mStartLock.wait();
+                } catch (InterruptedException ie) { /* not expected */ }
+            }
+        }
     }
 
 
