@@ -21,8 +21,9 @@ public interface RTG_App
 
     /**
      * To be executed by the RTG_Thread every frame before Render.
+     * @param dt (delta time) Time between frames in seconds.
      */
-    public void Update();
+    public void Update(float dt);
 
     /**
      * Called when RTG_Surface changed (screen rotated, resolution changed, ...)

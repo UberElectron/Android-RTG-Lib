@@ -24,6 +24,9 @@ public class RTG_Thread extends Thread
 
     private Looper loop;
 
+    //Store last frame time to calculate dt.
+    private long lastTimeNanos;
+
 
     public RTG_Thread(Class<? extends RTG_App> rtgApp, Class<? extends RTG_Handler> handler,
                       SurfaceHolder rtgSurfaceHolder)
@@ -40,8 +43,6 @@ public class RTG_Thread extends Thread
         {
             Log.e(TAG, "Error instantiating rtgApp");
         }
-
-        //TODO: Wait until it's ready.
     }
 
 
@@ -109,20 +110,28 @@ public class RTG_Thread extends Thread
     {
         Log.i(TAG, "Quitting RTG_Thread...");
 
+        loop.quit();
+
+
         //Stop App
         app.Stop();
-
-        loop.quit();
     }
 
 
     public void doFrame(long timeNanos)
     {
-        Log.i(TAG, "Frame!!!");
+        //Calculate delta time.
+        long dtNanos = timeNanos - lastTimeNanos;
+        float dtMs = dtNanos / 1000000;
+        float dtSecs = dtMs / 1000;
 
-        //TODO: Add time limiter.
+        //FIXME: Where should this be? After all doFrame is done or at the beginning of a frame?
+        lastTimeNanos = timeNanos;
+        //Log.i(TAG, "Frame: " + dtSecs);
 
-        app.Update();
+        app.Update(dtSecs);
+
+        //TODO: Add time limiter if dt > ms per frame for a given fps rate. (16ms for 60fps...) so it don't render or smth.
 
         Canvas c = holder.lockCanvas();
         c.drawRGB(255, 255, 255);
@@ -141,9 +150,33 @@ public class RTG_Thread extends Thread
 
     /////////////////////////
 
-    public RTG_Handler getHandler()
+    /**
+     * Get Handler as RTG_Handler.
+     * @return RTG_Handler instance.
+     */
+    public RTG_Handler getHandler() { return handler; }
+
+    /**
+     * Get handled casted.
+     * @param type Handler class type.
+     * @return Handler instance.
+     */
+    public <T> T getHandler(Class<T> type)
     {
-        return handler;
+        return type.cast(handler);
     }
+
+    /**
+     * Get RTG_App instance.
+     * @return RTG_App instance.
+     */
+    public RTG_App getApp() { return app; }
+
+    /**
+     * Get App instance.
+     * @param type App class type.
+     * @return App instance.
+     */
+    public <T> T getApp(Class<T> type) { return type.cast(app); }
 
 }

@@ -3,6 +3,7 @@ package com.uberelectron.androidrtg_sample.RTG;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import com.uberelectron.androidrtg.RTG_App;
 
@@ -24,7 +25,7 @@ public class MyApp implements RTG_App
     }
 
     @Override
-    public void Update()
+    public void Update(float dt)
     {
 
     }
@@ -38,6 +39,6 @@ public class MyApp implements RTG_App
     @Override
     public void Stop()
     {
-
+        Log.i("MyApp", "App quit");
     }
 }
